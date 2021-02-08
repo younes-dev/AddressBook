@@ -1,0 +1,12 @@
+@import "../../../node_modules/bootstrap/scss/bootstrap.scss";
+
+.address-card{
+  width: 20%;
+  margin: 2em;
+  display: inline-block;
+  color: #fff;
+  .address-picture{
+    width: 80%;
+    border-radius: 50%;
+  }
+}

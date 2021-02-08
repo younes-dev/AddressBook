@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="text-center">
+        {% if addresses is empty %}
+            <p class="text-center">Address book is empty</p>
+        {% endif %}
+        {% for address in addresses  %}
+
+                <div class="card bg-primary address-card ">
+                    <h5 class="card-header">
+                        {% if address.picture is empty %}
+                            <img class="img-thumbnail address-picture" src="{{ asset('uploads/blank-profile-picture.png') }}"><br>
+                        {% else %}
+                            <img class="img-thumbnail address-picture" src="{{ asset('uploads/pic/' ~ address.picture) }}"><br>
+                        {% endif %}
+
+                        {{ address.firstname }} {{ address.lastname }}
+                    </h5>
+                    <div class="card-body">
+                        <table class="table table-striped">
+                            <tbody>
+                            <tr>
+                                <td scope="row">Street</td>
+                                <td>{{ address.street }}</td>
+                            </tr>
+                            <tr>
+                                <td scope="row">Zip</td>
+                                <td>{{ address.zip }}</td>
+                            </tr>
+                            <tr>
+                                <td scope="row">City</td>
+                                <td>{{ address.city }}</td>
+                            </tr>
+                            <tr>
+                                <td scope="row">Country</td>
+                                <td>{{ address.country | country}}</td>
+                            </tr>
+                            <tr>
+                                <td scope="row">Phone number</td>
+                                <td>{{ address.phonenumber }}</td>
+                            </tr>
+                            <tr>
+                                <td scope="row">Birthday</td>
+                                <td>{{ address.birthday|date('Y-m-d') }}</td>
+                            </tr>
+                            <tr>
+                                <td scope="row">E-mail</td>
+                                <td>{{ address.email }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="card-footer">
+                        <a class="btn btn-success" href="{{ path('editAddress',{'id':address.id})  }}">Edit</a>
+                        <a class="btn btn-danger" href="{{ path('deleteAddress',{'id':address.id})  }}">Delete</a>
+                    </div>
+                </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}
+
+{% block stylesheets %}
+
+{% endblock %}
